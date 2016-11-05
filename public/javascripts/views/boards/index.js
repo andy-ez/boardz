@@ -34,13 +34,10 @@ var BoardsIndexView = Backbone.View.extend({
     $("#new_board_form input[type='text']").css('border', 'none');
     $('p.error_msg').hide();
   },
-  validName: function(new_name){
-    return App.validBoardName(new_name);
-  },
   createBoard: function(e){
     e.preventDefault();
-    var new_name = $(e.target).serializeArray()[0].value;
-    if (this.validName(new_name)){
+    var new_name = $(e.target).serializeArray()[0].value.trim();
+    if (App.validateName(new_name)){
       App.createBoard(new_name);
       this.hideNewForm();
     }else{

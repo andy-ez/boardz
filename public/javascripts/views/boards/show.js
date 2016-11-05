@@ -42,10 +42,8 @@ var BoardShowView = Backbone.View.extend({
   updateBoardName: function(e){
     e.preventDefault();
     var new_name = $(e.target).serializeArray()[0].value.trim();
-    if (App.validBoardName(new_name) ||
-        new_name === this.model.get('name')){
+    if (App.validateName(new_name)){
       this.model.save({name: new_name});
-      this.model.name = new_name;
       this.hideForm();
       $('#board_title h1').text(new_name);
     }else{
@@ -55,7 +53,7 @@ var BoardShowView = Backbone.View.extend({
   createList: function(e){
     e.preventDefault();
     var new_name = $(e.target).serializeArray()[0].value.trim();
-    if (App.validListName(this.model, new_name)){
+    if (App.validateName(new_name)){
       App.createList(this.model, new_name);
       this.hideAllForms();
     }else{

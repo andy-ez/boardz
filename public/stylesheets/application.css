@@ -55,6 +55,9 @@ header nav a.brand span{
   vertical-align: middle;
 }
 
+header span[title^="Cl"]:hover{
+  color: #b00b00;
+}
 header nav a.brand:hover{
   opacity: 0.9;
 }
@@ -386,7 +389,7 @@ form p.error_msg{
   left: 0;
   right: 0;
   overflow-x: scroll;
-  background: rgb(0, 121, 191);
+  /*background: rgb(0, 121, 191);*/
 }
 
 #lists_index {
@@ -702,6 +705,10 @@ div.cards ul.card_list li.card_item:hover{
 
 #add_card_form input[type='submit']{
   padding: 5px 15px;
+}
+
+ul.ui-sortable{
+  min-height: 10px;
 }
 
 /* 768px Media Query

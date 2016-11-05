@@ -18,7 +18,6 @@ var ListItemView = Backbone.View.extend({
   },
   updateRank: function(e, index) {
       App.updateRank(this.model, index);
-      console.log(this.model.toJSON());
   },    
   addCardView: function(e){
     $(e.target).hide();
@@ -49,10 +48,8 @@ var ListItemView = Backbone.View.extend({
   },
   changeName: function(e){
     var new_name = $(e.target).text().trim();
-    if(App.validListName(this.model.board, new_name) ||
-       new_name === this.model.get('name')){
+    if(App.validateName(new_name)){
       this.model.save({name: new_name});
-
     }else{
       $(e.target).text(this.model.get('name'));
     }
@@ -65,8 +62,12 @@ var ListItemView = Backbone.View.extend({
     }
   },
   destroy: function(){
-    this.undelegateEvents();
-    this.$el.remove();
+    var self = this;
+    self.$el.css({'transform': 'rotate(20deg)', 'position': 'fixed'});
+    self.$el.animate({top: 0}, 1000, function(){
+      self.undelegateEvents();
+      self.$el.remove();
+    });
   },
   render: function(){
     this.$el.html(this.template(this.model.toJSON()))
@@ -102,13 +103,8 @@ var ListItemView = Backbone.View.extend({
             var old_id = ui.sender.parents('li').attr('data-id'),
                 old_list = self.model.collection.get(old_id),
                 new_id = ui.item.parents('li').attr('data-id'),
-                new_list = self.model.collection.get(new_id),
-                card_id = ui.item.attr('data-id'),
-                card = old_list.cards.get(card_id);
-                console.log('run');
-                ui.item.trigger('moveCardList', [old_list, new_list, card, ui.item.index()]);
-
-                // card.trigger('moveCardList', [old_list, new_list, ui.item.index()]);
+                new_list = self.model.collection.get(new_id);
+                ui.item.trigger('moveCardList', [old_list, new_list, ui.item.index()]);
           },
           connectWith: ".card_sortable"
       });

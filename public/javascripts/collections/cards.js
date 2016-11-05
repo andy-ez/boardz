@@ -1,10 +1,7 @@
 var Cards = Backbone.Collection.extend({
   model: Card,
-  rank: 1,
+  localStorage: new Backbone.LocalStorage('cards'),
   comparator: function(model){
     return -model.get('rank');
-  },
-  initialize: function(name){
-    this.localStorage = new Backbone.LocalStorage(name);
   }
 });
