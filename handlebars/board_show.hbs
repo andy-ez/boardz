@@ -1,0 +1,25 @@
+<section id="show_board">
+  <div id='board_title'>
+    <h1>{{name}}</h1>
+    <form method='post' action='#' id='edit_board_form'>
+      <h3>Rename Board</h3><a href="#" class='close'></a>
+      <label for='name'>Title</label>
+      <input type='text' name='name' id='edit_board_name' value="{{name}}"/>
+      <p class='error_msg'>Invalid Name</p>
+      <input type='submit' value='Rename' />
+    </form>
+  </div>
+  <ul id='lists_index' class='list_sortable'>
+    <li id='add_list_group' class='not_sortable'>
+      <div class='add_list'>
+        Add a list...
+      </div>
+      <form class='add_to_board' id='add_list_form' method='post' action'#'>
+        <input type='text' name='name' id='list_name_input' placeholder='Add a list...'/>
+        <p class='error_msg'>Invalid Name</p>
+        <input type='submit' class='success_submit' value='Save'/>
+        <a class="close_list_form" href="#"></a>
+      </form>
+    </li>
+  </ul>
+</section>
