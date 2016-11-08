@@ -381,7 +381,6 @@ form p.error_msg{
   margin: 40px 0 0 0;
   padding: 10px;
   white-space: nowrap;
-  background: #637255;
   padding: 20px;
   position: fixed;
   top: 0;
@@ -389,7 +388,7 @@ form p.error_msg{
   left: 0;
   right: 0;
   overflow-x: scroll;
-  /*background: rgb(0, 121, 191);*/
+  background: rgb(0, 121, 191);
 }
 
 #lists_index {
@@ -711,6 +710,253 @@ ul.ui-sortable{
   min-height: 10px;
 }
 
+
+/*CARD SHOW STYLES
+---------------------------------------------------
+---------------------------------------------------
+*/
+
+div#modal_layer{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 11;
+  cursor: pointer;
+}
+
+div#card_shown{
+  position: fixed;
+  top: 50px;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -360px;
+  width: 720px;
+  box-sizing: border-box;
+  padding: 20px 15px;
+  background: #edeff0;
+  z-index: 13;
+  overflow: scroll;
+  color: #464746;
+}
+
+#card_shown > a{
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  color: #464746;
+  font-size: 20px;
+  line-height: 20px
+}
+
+#card_shown > a:hover{
+  color: #b00b00;
+}
+
+#card_show_left{
+  float: left;
+  width: 80%;
+  box-sizing: border-box;
+  /*background: yellow;*/
+}
+#card_show_right{
+  overflow-x: auto;
+  /*background: green;*/
+  padding: 60px 0 0 0;
+}
+
+#card_show_left > section{
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#card_show_left > section > div{
+  margin: 10px 0 0 35px;
+  padding-right: 30px;
+}
+
+#card_show_left > section > div > i{
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: normal;
+  color: #aaaaaa;;
+}
+
+#card_show_left h2{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h2[contenteditable='true']{
+  cursor: pointer;
+}
+
+h2[contenteditable='true']:focus{
+  background: #f9f9f9;
+}
+
+#card_shown h6{
+  font-weight: normal;
+  font-size: 12px;
+  margin: 4px 0 10px 0;
+}
+
+#card_shown h6 span{
+  color: #909090;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#card_shown p{
+  font-size: 12px;
+}
+
+#card_shown h6 span:hover{
+  color: #333333;
+}
+
+#card_shown h6 span.highlight{
+  padding: 5px;
+  display: block;
+}
+
+#card_shown h6 span.highlight i{
+  margin: 0 10px 0 0;
+}
+#card_shown h6 span.highlight:hover{
+  background: #d9d9d9;
+}
+
+#card_description_form{
+  display: none;
+}
+
+#card_shown textarea{
+  display: block;
+  font-size: 10px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  resize: none;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: auto;
+  margin: 5px 0 10px 0;
+  padding: 10px;
+  min-height: 110px;
+  box-sizing: border-box;
+  box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+#card_shown input[type='submit']{
+  padding: 10px 25px;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 1px #3f6f22;
+  background: #5cb85c;
+  margin: 0px 20px 5px 0;
+  cursor: pointer;
+  transition: background 0.1s ease-in;
+  vertical-align: top;
+}
+
+#card_shown input[type='submit']:hover{
+  background: #3c983c;
+}
+
+#card_shown input[type='submit']:disabled{
+  background: #dfdfdf;
+  color: #898989;
+  box-shadow: none;
+  cursor: auto;
+  font-weight: normal;
+}
+
+#card_shown input[type='submit'] + i{
+  line-height: 36px;
+  font-size: 36px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+#card_shown input[type='submit'] + i:hover{
+  color: #b00b00;
+}
+
+#card_comment_form textarea{
+  background: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  min-height: 70px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+/*_________________________________________________________*/
+
+#card_show_right h2{
+  font-weight: 700;
+  font-size: 18px;
+  color: #444444;
+  margin: 0 0 10px 0;
+}
+
+#card_show_right ul li{
+  padding: 8px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #444444;
+  border: none;
+  box-shadow: 0 1px #aaaaaa;
+  background: #e4e4e4;
+  margin: 0px 0px 10px 0;
+  cursor: pointer;
+  transition: background 0.1s ease-in;
+}
+
+#card_show_right ul li:hover{
+  background: rgb(0, 121, 191);
+  color: #f9f9f9;
+  font-weight: bold;
+}
+#card_show_right ul li span i{
+  margin-right: 10px;
+}
+#card_show_right ul li span{
+  width: 100%;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+
+
+
+/*SORTING STYLES
+----------------------------------------------------
+----------------------------------------------------
+*/
+
+li.ui-sortable-placeholder {
+  visibility: visible !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius': 5px !important;
+  border: 2px #888888 dashed !important;
+}
+
+li.ui-sortable-helper{
+  transform: rotate(-15deg);
+  opacity: 0.7;
+}
+
+
+
 /* 768px Media Query
 ------------------------------------------
 */
@@ -731,28 +977,6 @@ ul.ui-sortable{
   header nav ul #nav_search i{
     margin: 8px 2px 0 6px;
   }
-
-/*SORTING STYLES
-----------------------------------------------------
-----------------------------------------------------
-*/
-
-.ui.sortable-placeholder {
-  border: 2px dashed #ffffff;
-  width: 240px;
-  height: auto;
-  padding: 6px;
-  margin: 6px;
-  float: left;
-
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-}
-
-li.ui-sortable-helper{
-  display: none !important;
-}
 
 /* Main Board List 
 ------------------------------

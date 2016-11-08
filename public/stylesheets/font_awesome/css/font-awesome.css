@@ -11,6 +11,10 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.fa-times-thin:before {
+  content: '\00d7';
+}
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;

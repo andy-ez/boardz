@@ -7,7 +7,7 @@ var BoardShowView = Backbone.View.extend({
     "click div.add_list": "showListForm",
     "focus input[type='text']": "hideError",
     "submit #edit_board_form": "updateBoardName", 
-    "submit #add_list_form": "createList",
+    "submit #add_list_form": "createList"
   },
   showListForm: function(e){
     $(e.target).hide();
@@ -16,6 +16,9 @@ var BoardShowView = Backbone.View.extend({
   hideListForm: function(){
     $('div.add_list').show();
     $('#add_list_form').hide()[0].reset();
+  },
+  hideListFormDelayed: function(){
+    setTimeout(this.hideListForm, 150);
   },
   hideAllForms: function(){
     var self = this;
@@ -29,7 +32,9 @@ var BoardShowView = Backbone.View.extend({
     $("#edit_board_form input[type='text']").select();
   },
   hideForm: function(e){
-    $('#edit_board_form').hide();
+    setTimeout(function(){
+      $('#edit_board_form').hide();
+    }, 150);
   },
   displayError: function(){
     $("section form input[type='text']").css('border', '1px solid #b00b00');

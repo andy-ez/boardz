@@ -20,9 +20,8 @@ var CardItemView = Backbone.View.extend({
   moveCardList: function(e, old_list, new_list, index){
     App.moveCardList(old_list, new_list, this.model, index);
   },   
-  openCard: function(e){
-    e.preventDefault();
-    console.log('clicked');
+  openCard: function(){
+    new CardShowView({model: this.model});
   },
   deleteCard: function(){
     App.deleteCard(this.model);
@@ -31,7 +30,7 @@ var CardItemView = Backbone.View.extend({
   destroy: function(){
     var self = this;
     self.$el.css({'transform': 'rotate(20deg)', 'position': 'fixed'});
-    self.$el.animate({bottom: 0}, 2000, function(){
+    self.$el.animate({bottom: 0}, 500, function(){
       self.undelegateEvents();
       self.$el.remove();
     });

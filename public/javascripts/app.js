@@ -4,15 +4,6 @@ var App = {
   validateName: function(name){
     return (/\S/.test(name));
   },
-  board_lists: function(board){
-    return this.lists.where({board_id: board.id});
-  },
-  board_cards: function(board){
-    return this.cards.where({board_id: board.id});
-  },
-  list_cards: function(list){
-    return this.cards.where({list_id: list.id});
-  },
   indexView: function(){
     if (this.main_view) {this.main_view.undelegateEvents();}
     this.main_view = new BoardsIndexView({collection: this.boards});
@@ -70,7 +61,7 @@ var App = {
     this.cards.create({
       name: name, 
       list_id: list.id,
-      board_id: list.board_id,
+      board_id: list.get('board_id'),
       rank: list.next_card_rank
     }, {
       success: function(response){
