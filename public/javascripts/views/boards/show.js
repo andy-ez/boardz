@@ -20,7 +20,8 @@ var BoardShowView = Backbone.View.extend({
   hideListFormDelayed: function(){
     setTimeout(this.hideListForm, 150);
   },
-  hideAllForms: function(){
+  hideAllForms: function(e){
+    e.preventDefault()
     var self = this;
     setTimeout(function(){
       self.hideForm();
