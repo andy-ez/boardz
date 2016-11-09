@@ -21,7 +21,7 @@ var LayoutView = Backbone.View.extend({
   },
   showSearchResults: function(e){
     var search_term = $(e.target).val().trim();
-    this.trigger('searching', search_term);
+    App.showSearchResults(search_term);
   },
   clearStorage: function(){
     var result = confirm("This will DELETE ALL APPLICATION DATA. Proceed?");

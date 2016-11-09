@@ -10,15 +10,15 @@ var SearchView = Backbone.View.extend({
   },
   openBoard: function(e){
     var id =  $(e.target).attr('data-id') || $(e.target).parent('li').attr('data-id');
-    this.trigger('open_board', id);
+    App.openBoard(id);
   },
   openList: function(e){
     var id =  $(e.target).attr('data-id') || $(e.target).parent('li').attr('data-id');
-    this.trigger('open_list', id);
+    App.openList(id);
   },
   openCard: function(e){
     var id =  $(e.target).attr('data-id') || $(e.target).parent('li').attr('data-id');
-    this.trigger('open_card', id);
+    App.openCard(id);
   },
   destroy: function(){
     this.undelegateEvents();

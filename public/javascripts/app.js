@@ -6,10 +6,13 @@ var App = {
   },
   reset: function(){
     localStorage.clear();
+    this.destroyViews();
+    this.init();
+    this.indexView();
+  },
+  destroyViews: function(){
     this.navView.destroy();
     this.main_view.destroy();
-    this.init();
-    router.navigate('index.html', {trigger: true});
   },
   indexView: function(){
     if (this.main_view) {this.main_view.destroy();}
@@ -132,10 +135,6 @@ var App = {
     card.save({list_id: new_list.id, rank: new_list.next_card_rank});
     this.updateRank(card, new_position);
   },
-  bind: function(){
-    _.extend(this, Backbone.Events);
-    this.listenTo(this.navView, 'searching', this.showSearchResults);
-  },
   showSearchResults: function(text){
     if (this.searchView){
       this.searchView.destroy();
@@ -145,9 +144,6 @@ var App = {
       lists: this.lists.search(text).map(function(item){return item.toJSON();}),
       boards: this.boards.search(text).map(function(item){return item.toJSON();})
     });
-    this.listenTo(this.searchView, 'open_board', this.openBoard);
-    this.listenTo(this.searchView, 'open_list', this.openList);
-    this.listenTo(this.searchView, 'open_card', this.openCard);
   },
   fetchData: function(){
     //fetches stored data and updates internal rank counter
@@ -181,14 +177,16 @@ var App = {
       }
     });
   },
-  init: function(){
+  getData: function(){
     this.boards = new Boards();
     this.lists = new Lists();
     this.cards = new Cards();
     this.fetchData();
+  },
+  init: function(){
+    this.getData();
     this.navView = new LayoutView();
     // this.indexView();
-    this.bind();
   }
 };
 

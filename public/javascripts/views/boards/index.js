@@ -49,7 +49,7 @@ var BoardsIndexView = Backbone.View.extend({
   },
   destroy: function(){
     this.undelegateEvents();
-    this.$el.html('');
+    this.$el.remove();
   },
   render: function(){
     this.$el.html(this.template({boards: this.collection.toJSON()}));
@@ -79,6 +79,5 @@ var BoardsIndexView = Backbone.View.extend({
   },
   initialize: function(){
     this.render();
-    // this.listenTo(this.collection, 'add remove', this.render);
   }
 });
