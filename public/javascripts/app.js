@@ -9,6 +9,7 @@ var App = {
     this.navView.destroy();
     this.main_view.destroy();
     this.init();
+    router.navigate('index.html', {trigger: true});
   },
   indexView: function(){
     if (this.main_view) {this.main_view.destroy();}
