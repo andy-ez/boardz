@@ -28,9 +28,18 @@
   <script src='javascripts/views/cards/card.js'></script>
   <script src='javascripts/views/cards/card_add.js'></script>
   <script src='javascripts/views/cards/card_show.js'></script>
-
+  <script src='javascripts/router.js'></script>
   <script>
     App.init();
+    Backbone.history.start({
+      pushState: true,
+      trigger: true
+    });
+
+    $(document).on("click", "a[href^='/']", function(e) {
+      e.preventDefault();
+      router.navigate($(e.currentTarget).attr("href").replace(/^\//, ""), {trigger: true});
+    })
   </script>
 </body>
 </html>

@@ -22,6 +22,7 @@ var App = {
     this.main_view.undelegateEvents();
     this.main_view = new BoardShowView({model: board});
     this.renderLists(board);
+    router.navigate(board.get('name'));
   },
   openList: function(list){
     var board;
@@ -185,7 +186,7 @@ var App = {
     this.cards = new Cards();
     this.fetchData();
     this.navView = new LayoutView();
-    this.indexView();
+    // this.indexView();
     this.bind();
   }
 };
