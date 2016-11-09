@@ -43,6 +43,7 @@ var CardItemView = Backbone.View.extend({
   },
   initialize: function(){
     this.render();
+    this.listenTo(this.model, 'change:name', this.render)
     this.on('deleting', this.deleteCard);
   }
 });

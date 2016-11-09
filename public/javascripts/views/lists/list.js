@@ -11,7 +11,7 @@ var ListItemView = Backbone.View.extend({
     "blur h3": 'changeName',
     "click div.list_title i": "deleteList",
     "click div.list_title h3": "selectText",
-    "keydown div.list_title h3": "commitChange",
+    "keydown div.list_title h3": "commitChangeOnReturn",
     "mouseover i": "shake",
     "click div.add_card": "addCardView",
     "moved_list": "updateRank"
@@ -29,7 +29,7 @@ var ListItemView = Backbone.View.extend({
   showAddForm: function(){
     $('div.add_card').show();
   },
-  commitChange: function(key){
+  commitChangeOnReturn: function(key){
     if(key.which == 13){
       key.preventDefault();
       window.getSelection().empty();

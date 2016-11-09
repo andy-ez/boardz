@@ -35,7 +35,7 @@ this["JST"]["card_show"] = Handlebars.template({"1":function(container,depth0,he
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "<div id='modal_layer'></div><div id='card_shown'><a href='#'><i class=\"fa fa-times-thin fa-2x\"></i></a><div id=\"card_show_left\"><section id='card_info'><div id='card_name'><i class=\"fa fa-trello fa-rotate-90 fa-lg\" aria-hidden=\"true\"></i><h2 contenteditable='true'>"
+  return "<div id='modal_layer'></div><div id='card_shown'><a href='#'><i class=\"fa fa-times-thin fa-2x\"></i></a><div id=\"card_show_left\"><section id='card_info'><div id='card_name'><i class=\"fa fa-trello fa-rotate-90 fa-lg\" aria-hidden=\"true\"></i><h2 contenteditable='true' tabindex='-1'>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.card : depth0)) != null ? stack1.name : stack1), depth0))
     + "</h2><h6>in list <span>"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.list : depth0)) != null ? stack1.name : stack1), depth0))
