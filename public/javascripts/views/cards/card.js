@@ -20,10 +20,11 @@ var CardItemView = Backbone.View.extend({
   moveCardList: function(e, old_list, new_list, index){
     App.moveCardList(old_list, new_list, this.model, index);
   },   
-  openCard: function(){
+  openCard: function(e){
     new CardShowView({model: this.model});
   },
-  deleteCard: function(){
+  deleteCard: function(e){
+    e.stopImmediatePropagation();
     App.deleteCard(this.model);
     this.destroy();
   },

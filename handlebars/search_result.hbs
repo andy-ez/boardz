@@ -1,0 +1,45 @@
+{{#if cards.length}}
+  <section id='card_results'>
+  <h2>Cards</h2>
+  <ul class='result_list'>
+    {{#each cards}}
+      <li class='card_result_item' data-id='{{id}}'>
+        <span>{{name}}</span>
+        <div class='card_result_details'>
+          <h6>{{name}}</h6>
+          <span>in <strong>{{getCardList this}}</strong> on <strong>{{getCardBoard this}}</strong> <i class="fa fa-trello fa-rotate-90"></i></span>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+  </section>
+{{/if}}
+{{#if lists.length}}
+  <section id='list_results'>
+  <h2>Lists</h2>
+  <ul class='result_list'>
+    {{#each lists}}
+      <li class='list_result_item' data-id='{{id}}'>{{name}}</li>
+    {{/each}}
+  </ul>
+  </section>
+{{/if}}
+{{#if boards.length}}
+  <section id='board_results'>
+  <h2>Boards</h2>
+  <ul class='result_list'>
+    {{#each boards}}
+      <li class='board_result_item' data-id='{{id}}'>
+        <span class='bullet'></span>
+        <span>{{name}}</span>
+      </li>
+    {{/each}}
+  </ul>
+  </section>
+{{/if}}
+{{#unless total}}
+  <section class='no_result'>
+    <p>No cards, lists or boards match that search term</p>
+  </section>
+{{/unless}}
+

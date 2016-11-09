@@ -4,15 +4,44 @@ var App = {
   validateName: function(name){
     return (/\S/.test(name));
   },
+  reset: function(){
+    localStorage.clear();
+    this.navView.destroy();
+    this.main_view.destroy();
+    this.init();
+  },
   indexView: function(){
-    if (this.main_view) {this.main_view.undelegateEvents();}
+    if (this.main_view) {this.main_view.destroy();}
     this.main_view = new BoardsIndexView({collection: this.boards});
     this.renderBoards();
   },
   openBoard: function(board){
+    if (typeof board === 'string'){
+      board = this.boards.findWhere({id: board});
+    }
     this.main_view.undelegateEvents();
     this.main_view = new BoardShowView({model: board});
     this.renderLists(board);
+  },
+  openList: function(list){
+    var board;
+    if (typeof list === 'string'){
+      board = App.lists.findWhere({id: list}).board()
+    }else{
+      board = list.board();
+    }
+    this.openBoard(board);
+  },
+  openCard: function(card){
+    var board;
+    if (typeof card === 'string'){
+      card = App.cards.findWhere({id: card});
+      board = card.board();
+    }else{
+      board = card.board();
+    }
+    this.openBoard(board);
+    new CardShowView({model: card});
   },
   renderBoard: function(board){
     new BoardItemView({model: board});
@@ -91,8 +120,8 @@ var App = {
     collection.each(function(item, index){
       if (index < position){
         item.save({rank: index + 1});
-      }else{item.save({rank: index + 2})}
-    })
+      }else{item.save({rank: index + 2});}
+    });
 
     model.set('rank', position + 1);
     collection.create(model);
@@ -103,6 +132,20 @@ var App = {
   },
   bind: function(){
     _.extend(this, Backbone.Events);
+    this.listenTo(this.navView, 'searching', this.showSearchResults);
+  },
+  showSearchResults: function(text){
+    if (this.searchView){
+      this.searchView.destroy();
+    }
+    this.searchView = new SearchView({
+      cards: this.cards.search(text).map(function(item){return item.toJSON();}),
+      lists: this.lists.search(text).map(function(item){return item.toJSON();}),
+      boards: this.boards.search(text).map(function(item){return item.toJSON();})
+    });
+    this.listenTo(this.searchView, 'open_board', this.openBoard);
+    this.listenTo(this.searchView, 'open_list', this.openList);
+    this.listenTo(this.searchView, 'open_card', this.openCard);
   },
   fetchData: function(){
     //fetches stored data and updates internal rank counter
@@ -112,7 +155,7 @@ var App = {
       success: function(response){
         response.each(function(board){
           response.rank = response.rank <= board.get('rank') ? board.get('rank') + 1 : response.rank;
-        })
+        });
       }
     });
 
@@ -122,7 +165,7 @@ var App = {
         response.each(function(list){
           var board = self.boards.findWhere({id: list.get('board_id')});
           board.next_list_rank = board.next_list_rank <= list.get('rank') ? list.get('rank') + 1 : board.next_list_rank;
-        })
+        });
       }
     });
 
@@ -132,7 +175,7 @@ var App = {
         response.each(function(card){
           var list = self.lists.findWhere({id: card.get('list_id')});
           list.next_card_rank = list.next_card_rank <= card.get('rank') ? card.get('rank') + 1 : list.next_card_rank;
-        })
+        });
       }
     });
   },
@@ -141,7 +184,16 @@ var App = {
     this.lists = new Lists();
     this.cards = new Cards();
     this.fetchData();
-    this.layout = new LayoutView();
+    this.navView = new LayoutView();
     this.indexView();
+    this.bind();
   }
-}
+};
+
+Handlebars.registerHelper("getCardBoard", function(card){
+  return App.boards.findWhere({id: card.board_id}).get('name');
+});
+
+Handlebars.registerHelper("getCardList", function(card){
+  return App.lists.findWhere({id: card.list_id}).get('name');
+})

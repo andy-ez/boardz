@@ -54,11 +54,11 @@ this["JST"]["card_view"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main"
 },"useData":true});
 
 this["JST"]["index"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class='main_content'><h2><i class=\"fa fa-user-circle-o fa-lg\" aria-hidden=\"true\"></i>Personal Boards</h2><ul class='boards_list sortable' id='boards_list'><li class='new_board'><a href='#'>Create new board...</a></li><li class='form'><form method='post' action='#' id='new_board_form'><h3>Create Board</h3><a href=\"#\" class='close'></a><label for='name'>Title</label><input type='text' name='name' id='new_board_name' placeholder='E.g Todo List...'/><p class='error_msg'>Invalid Name</p><input type='submit' value='Create' /></form></li></ul></div>";
+    return "<h2><i class=\"fa fa-user-circle-o fa-lg\" aria-hidden=\"true\"></i>Personal Boards</h2><ul class='boards_list sortable' id='boards_list'><li class='new_board'><a href='#'>Create new board...</a></li><li class='form'><form method='post' action='#' id='new_board_form'><h3>Create Board</h3><a href=\"#\" class='close'></a><label for='name'>Title</label><input type='text' name='name' id='new_board_name' placeholder='E.g Todo List...'/><p class='error_msg'>Invalid Name</p><input type='submit' value='Create' /></form></li></ul>";
 },"useData":true});
 
 this["JST"]["layout"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<header><nav class='navbar'><div class=\"logo\"><a href=\"#\" class='brand'><span><i class=\"fa fa-trello fa-lg fa-pulse\" aria-hidden=\"true\"></i></span>BOARDZ</a></div><ul class=\"nav-actions-left\"><li id='list_boards'><i class=\"fa fa-trello fa-rotate-90 fa-lg\" aria-hidden=\"true\"></i>&nbsp Boards</li><li id='nav_search'><form id=\"nav_search_form\" method='get' action='#'><input type='text' name='search_term' id='search_term' /></form><i class=\"fa fa-search fa-flip-horizontal fa-lg\" aria-hidden=\"true\"></i></li></ul><!----><ul class=\"nav-actions-right\"><li id='nav_add_board'><span title=\"Clear all boards\"><i class=\"fa fa-trash fa-flip-horizontal fa-lg\" aria-hidden=\"true\"></i></span></li></ul></nav></header><main></main>";
+    return "<nav class='navbar'><div class=\"logo\"><a href=\"#\" class='brand'><span><i class=\"fa fa-trello fa-lg fa-pulse\" aria-hidden=\"true\"></i></span>BOARDZ</a></div><ul class=\"nav-actions-left\"><li id='list_boards'><i class=\"fa fa-trello fa-rotate-90 fa-lg\" aria-hidden=\"true\"></i>&nbsp <span>Boards</span></li><li id='nav_search'><form id=\"nav_search_form\" method='get' action='#'><div><input type='text' name='search_term' id='search_term' /><i class='fa fa-times-thin'></i></div></form><i class=\"fa fa-search fa-flip-horizontal fa-lg\" aria-hidden=\"true\"></i></li></ul><!----><ul class=\"nav-actions-right\"><li id='nav_add_board'><span title=\"Clear all boards\"><i class=\"fa fa-trash fa-flip-horizontal fa-lg\" aria-hidden=\"true\"></i></span></li></ul></nav>";
 },"useData":true});
 
 this["JST"]["list_view"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -67,4 +67,63 @@ this["JST"]["list_view"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main"
   return "<div class='list_title'><h3 contenteditable='true' tabindex='-1' class='contenteditable'>"
     + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"name","hash":{},"data":data}) : helper)))
     + "</h3><i class=\"fa fa-trash-o fa-lg\" aria-hidden=\"true\"></i></div><div class='cards'><ul class='card_list card_sortable'></ul></div><div class='add_card'>Add a card...</div>";
+},"useData":true});
+
+this["JST"]["search_result"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<section id='card_results'><h2>Cards</h2><ul class='result_list'>"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.cards : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul></section>";
+},"2":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<li class='card_result_item' data-id='"
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "'><span>"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</span><div class='card_result_details'><h6>"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</h6><span>in <strong>"
+    + alias4((helpers.getCardList || (depth0 && depth0.getCardList) || alias2).call(alias1,depth0,{"name":"getCardList","hash":{},"data":data}))
+    + "</strong> on <strong>"
+    + alias4((helpers.getCardBoard || (depth0 && depth0.getCardBoard) || alias2).call(alias1,depth0,{"name":"getCardBoard","hash":{},"data":data}))
+    + "</strong> <i class=\"fa fa-trello fa-rotate-90\"></i></span></div></li>";
+},"4":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<section id='list_results'><h2>Lists</h2><ul class='result_list'>"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.lists : depth0),{"name":"each","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul></section>";
+},"5":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<li class='list_result_item' data-id='"
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "'>"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</li>";
+},"7":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<section id='board_results'><h2>Boards</h2><ul class='result_list'>"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.boards : depth0),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul></section>";
+},"8":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<li class='board_result_item' data-id='"
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "'><span class='bullet'></span><span>"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</span></li>";
+},"10":function(container,depth0,helpers,partials,data) {
+    return "<section class='no_result'><p>No cards, lists or boards match that search term</p></section>";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {};
+
+  return ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.cards : depth0)) != null ? stack1.length : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.lists : depth0)) != null ? stack1.length : stack1),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.boards : depth0)) != null ? stack1.length : stack1),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers.unless.call(alias1,(depth0 != null ? depth0.total : depth0),{"name":"unless","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});

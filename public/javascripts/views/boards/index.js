@@ -1,5 +1,8 @@
 var BoardsIndexView = Backbone.View.extend({
-  el: 'main',
+  tagName: 'div',
+  attributes: {
+    class: 'main_content'
+  },
   template: App.templates.index,
   events: {
     "click": 'hideContainers',
@@ -46,9 +49,11 @@ var BoardsIndexView = Backbone.View.extend({
   },
   destroy: function(){
     this.undelegateEvents();
+    this.$el.html('');
   },
   render: function(){
     this.$el.html(this.template({boards: this.collection.toJSON()}));
+    $('main').html(this.$el);
     $('.sortable').sortable({
       containment: 'parent',
       opacity: 0.8,

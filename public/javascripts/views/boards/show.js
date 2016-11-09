@@ -1,5 +1,5 @@
 var BoardShowView = Backbone.View.extend({
-  el: 'main',
+  tagName: 'div',
   template: App.templates.board_show,
   events: {
     "click #board_title h1": "showBoardEditForm",
@@ -65,8 +65,13 @@ var BoardShowView = Backbone.View.extend({
       this.displayError();
     }
   },
+  destroy: function(){
+    this.undelegateEvents();
+    this.$el.remove();
+  },
   render: function(){
     this.$el.html(this.template(this.model.toJSON()));
+    $('main').html(this.$el);
     this.$el.find('ul.list_sortable').sortable({
         containment: 'parent',
         tolerance: 'pointer',

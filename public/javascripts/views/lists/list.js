@@ -63,8 +63,8 @@ var ListItemView = Backbone.View.extend({
   },
   destroy: function(){
     var self = this;
-    self.$el.css({'transform': 'rotate(20deg)', 'position': 'fixed'});
-    self.$el.animate({top: 0}, 1000, function(){
+    self.$el.css({'transform': 'rotate(10deg)', 'position': 'fixed'});
+    self.$el.animate({top: 0}, 150, function(){
       self.undelegateEvents();
       self.$el.remove();
     });
@@ -78,9 +78,9 @@ var ListItemView = Backbone.View.extend({
           tolerance: 'pointer',
           opacity: 1,
           helper: 'clone',
-          delay: 100,
+          delay: 0,
           dropOnEmpty: true,
-          start: function(event, ui) {
+          start: function(e, ui) {
             ui.placeholder.css({
               'visibility': 'visible',
               'background': 'rgba(0, 0, 0, 0.2)',
@@ -90,7 +90,6 @@ var ListItemView = Backbone.View.extend({
               'transform': 'rotate(-5deg)',
               'background': '#f9f9f9'
             })
-            // console.log(ui.item.parents('li').attr('data-id'));
             oldListID = ui.item.parents('li').attr('data-id');
           },
           stop: function(event, ui) {         
